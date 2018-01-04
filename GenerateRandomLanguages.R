@@ -7,7 +7,7 @@
 # Getting repartition of the consonants and word length in the dataset will all words in all languages
 # Output are 3 vectors: consonant repartition, word length repartition for "I", "you", "Three", "Two" and for the rest:
 # ConsonantRepartionVector, ShortWordLengthRepartionVector, LongWordLengthRepartionVector
-setwd("C:/Sprachgenetik/R")
+#setwd("C:/Sprachgenetik/R")
 setwd("C:/Forschung")
 library("stringr")
 
