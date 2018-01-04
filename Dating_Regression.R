@@ -3,7 +3,7 @@
 #    eLinguistics.net -> Regression model from calibation data                   #
 #                        Processing a distances to age estimation                #
 #                                                                                #
-#    Vincent Beaufils, 14.12.2017.                                                #
+#    Vincent Beaufils, 15.12.2017                                                #
 #                                                                                #
 ##################################################################################
 
