@@ -10,7 +10,7 @@
 
 library(sqldf)
 setwd("c:/Forschung/")
-data <- read.csv2("PairwiseComparisons3.csv",header=T,stringsAsFactors=FALSE, sep=";")
+data <- read.csv2("PairwiseComparisons.csv",header=T,stringsAsFactors=FALSE, sep=";")
 
 #########################################################################################################################
 # CALL ALL MACRO FAMILIES IN A LOOP -> OUTPUT IN CSV #
@@ -33,8 +33,8 @@ for(clade1 in Clades) {
   i <- i+1
   setTxtProgressBar(pb,i)
   for(clade2 in Clades) {
-  sampleSize <- sqldf(paste0("SELECT * FROM data WHERE G1 LIKE '%", clade1, "%' AND G2 LIKE '%", clade2, "%' AND NbrWords > 14 AND Year = 2000"))
-  Clade1toClade2 <- sqldf(paste0("SELECT * FROM data WHERE G1 LIKE '%", clade1, "%' AND G2 LIKE '%", clade2, "%' AND NbrWords >14 AND Year = 2000"))
+  sampleSize <- sqldf(paste0("SELECT * FROM data WHERE Group1 LIKE '%", clade1, "%' AND Group2 LIKE '%", clade2, "%' AND NbrWords > 14 AND AgeOldestLG = 2000"))
+  Clade1toClade2 <- sqldf(paste0("SELECT * FROM data WHERE Group1 LIKE '%", clade1, "%' AND Group2 LIKE '%", clade2, "%' AND NbrWords >14 AND AgeOldestLG = 2000"))
   MeanClade1toClade2 <- mean(Clade1toClade2$Dist)
   sdClade1toClade2 <- sd(Clade1toClade2$Dist)  
   newrow <- data.frame(clade1,clade2,nrow(Clade1toClade2),MeanClade1toClade2,sdClade1toClade2)
@@ -52,8 +52,8 @@ Clades <- c("('00_IE_PIE','01_IE_Tocharian','02_IE_Indo_Aryan','03_IE_Iranian','
 Clade1 <- '05_IE_Slavic'
 Clade2 <- 'Dummy'
 
-sampleSize <- sqldf(paste0("SELECT * FROM data WHERE G1 LIKE '%", Clade1, "%' AND G2 LIKE '%", Clade2, "%' AND NbrWords > 14 AND Year = 2000"))
-Clade1toClade2 <- sqldf(paste0("SELECT * FROM data WHERE G1 LIKE '%", Clade1, "%' AND G2 LIKE '%", Clade2, "%' AND NbrWords >14 AND Year = 2000"))
+sampleSize <- sqldf(paste0("SELECT * FROM data WHERE Group1 LIKE '%", Clade1, "%' AND Group2 LIKE '%", Clade2, "%' AND NbrWords > 14 AND AgeOldestLG = 2000"))
+Clade1toClade2 <- sqldf(paste0("SELECT * FROM data WHERE Group1 LIKE '%", Clade1, "%' AND Group2 LIKE '%", Clade2, "%' AND NbrWords >14 AND AgeOldestLG = 2000"))
 MeanClade1toClade2 <- mean(Clade1toClade2$Dist)
 sdClade1toClade2 <- sd(Clade1toClade2$Dist)
 print(paste("Clade 1: ",Clade1))

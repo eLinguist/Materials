@@ -4,12 +4,18 @@
 #                                                                                                           #
 #############################################################################################################
 
-setwd("C:/Sprachgenetik/R")
+setwd("C:/Forschung")
 
-df2 <- read.csv("Distances_within_IE.csv")  # CSV with distances between all IE languages
-dataset <- as.numeric(df2[,1])
-hist(dataset,breaks = 60,col=rgb(1,0,0,0.5),xlim = range(0,100),ylim = range(0,2500),xlab=”Pairwise comparisons' distance values”)
+df <- read.csv("Distances_within_IE.csv")  # CSV with distances between all IE languages
+df2 <- read.csv("Distances_within_Dummies.csv")  # CSV with distances between Dummy languages -> same number as IE!
+df <- cbind(a = "Indo-European", df)
+df2 <- cbind(a = "Random languages", df2)
+df <- rbind(df,df2)
 
-df3 <- read.csv("Distances_within_Dummies.csv")  # CSV with distances between Dummy languages -> same number as IE!
-dataset2 <- as.numeric(df3[,1])
-hist(dataset2,breaks = 17,col=rgb(0,0,1,0.5),add=TRUE)
+p <- ggplot(df, aes(x=Dist,fill=a,color=a)) +
+  geom_histogram(alpha=0.5, position="identity") +
+  scale_color_manual(values=c("#999999", "#E69F00")) +
+  labs(title="Distribution of pairwise comparisons: between IE languages vs. between random languages",x="Pairwise comparisons values (distances)", y = "Frequency") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(legend.title=element_blank())
+p
