@@ -90,4 +90,4 @@ for(word in WordList) {
 MonitorIEAll <- cbind(MonitorIE, MonitorURALIC[,2])
 MonitorIEAll <- cbind(MonitorIEAll, MonitorDUMMIES[,2])
 colnames(MonitorIEAll) <- c("Word","IE between Families","IE within Families", "IE to Uralic", "IE to Dummies")
-write.csv2(file="MonitorClades.csv", MonitorIEAll)
+write.csv2(file="WordPerformance.csv", MonitorIEAll)
